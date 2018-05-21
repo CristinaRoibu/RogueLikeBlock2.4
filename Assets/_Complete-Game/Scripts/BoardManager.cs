@@ -29,12 +29,14 @@ namespace Completed
 		public int columns = 8; 										//Number of columns in our game board.
 		public int rows = 8;											//Number of rows in our game board.
 		public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
-		public Count foodCount = new Count (1, 5);						//Lower and upper limit for our random number of food items per level.
-		public GameObject exit;											//Prefab to spawn for exit.
+		public Count foodCount = new Count (1, 5);                      //Lower and upper limit for our random number of food items per level.
+        public Count PowerUpsCount = new Count(1, 3);
+        public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
 		public GameObject[] wallTiles;									//Array of wall prefabs.
 		public GameObject[] foodTiles;									//Array of food prefabs.
-		public GameObject[] enemyTiles;									//Array of enemy prefabs.
+        public GameObject[] PoweUpsTiles;
+        public GameObject[] enemyTiles;									//Array of enemy prefabs.
 		public GameObject[] outerWallTiles;								//Array of outer tile prefabs.
 		
 		private Transform boardHolder;									//A variable to store a reference to the transform of our Board object.
@@ -91,7 +93,7 @@ namespace Completed
 		
 		
 		//RandomPosition returns a random position from our list gridPositions.
-		Vector3 RandomPosition ()
+		public Vector3 RandomPosition ()
 		{
 			//Declare an integer randomIndex, set it's value to a random number between 0 and the count of items in our List gridPositions.
 			int randomIndex = Random.Range (0, gridPositions.Count);
@@ -142,9 +144,14 @@ namespace Completed
 			
 			//Instantiate a random number of food tiles based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (foodTiles, foodCount.minimum, foodCount.maximum);
-			
-			//Determine number of enemies based on current level number, based on a logarithmic progression
-			int enemyCount = (int)Mathf.Log(level, 2f);
+
+            if (!(PoweUpsTiles.Length == 0))
+            {
+                LayoutObjectAtRandom(PoweUpsTiles, PowerUpsCount.minimum, PowerUpsCount.maximum);
+            }
+
+            //Determine number of enemies based on current level number, based on a logarithmic progression
+            int enemyCount = (int)Mathf.Log(level, 2f);
 			
 			//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 			LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);

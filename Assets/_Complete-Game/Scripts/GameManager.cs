@@ -117,12 +117,12 @@ namespace Completed
 		{
       
             timer += Time.deltaTime;
-            if (timer >= intervalEnemyMovement)//every intervalEnemyMovement make the enemy move
+           /* if (timer >= intervalEnemyMovement)//every intervalEnemyMovement make the enemy move
             {
                 ignoreTurnDelay = true;
                 StartCoroutine(MoveEnemies());
                 ignoreTurnDelay = false;
-            }
+            }*/
             //Check that playersTurn or enemiesMoving or doingSetup are not currently true.
             if (playersTurn || enemiesMoving || doingSetup)
 				
@@ -131,6 +131,7 @@ namespace Completed
 			
 			//Start moving enemies.
 			StartCoroutine (MoveEnemies ());
+            
 
            
             
@@ -143,7 +144,11 @@ namespace Completed
 			enemies.Add(script);
 		}
 		
-		
+		public Vector3 GetTeleportLoc()
+        {
+            return boardScript.RandomPosition();
+        }
+
 		//GameOver is called when the player reaches 0 food points
 		public void GameOver()
 		{

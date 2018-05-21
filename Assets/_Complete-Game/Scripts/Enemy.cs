@@ -63,7 +63,6 @@ namespace Completed
 		//MoveEnemy is called by the GameManger each turn to tell each Enemy to try to move towards the player.
 		public void MoveEnemy ()
 		{
-            print("ENEMY MOVEMENT METHOC CALLED----------------------------------------------------------------------------");
 			//Declare variables for X and Y axis move directions, these range from -1 to 1.
 			//These values allow us to choose between the cardinal directions: up, down, left and right.
 			int xDir = 0;
