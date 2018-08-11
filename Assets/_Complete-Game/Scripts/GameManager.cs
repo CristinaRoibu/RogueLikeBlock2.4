@@ -4,10 +4,11 @@ using System.Collections;
 
 namespace Completed
 {
-	using System.Collections.Generic;		//Allows us to use Lists. 
-	using UnityEngine.UI;					//Allows us to use UI.
-	
-	public class GameManager : MonoBehaviour
+    using System;
+    using System.Collections.Generic;       //Allows us to use Lists. 
+    using UnityEngine.UI;                   //Allows us to use UI.
+
+    public class GameManager : MonoBehaviour
 	{
 		public float levelStartDelay = 2f;						//Time to wait before starting level, in seconds.
 		public float turnDelay = 0.1f;							//Delay between each Player turn.
@@ -160,10 +161,18 @@ namespace Completed
 			
 			//Disable this GameManager.
 			enabled = false;
+
+            Invoke(loadStart(), 20.0f);
 		}
-		
-		//Coroutine to move enemies in sequence.
-		IEnumerator MoveEnemies()
+
+        private string loadStart()
+        {
+            SceneManager.LoadScene(1);
+            return "";
+        }
+
+        //Coroutine to move enemies in sequence.
+        IEnumerator MoveEnemies()
 		{
 			//While enemiesMoving is true player is unable to move.
 			enemiesMoving = true;

@@ -7,7 +7,7 @@ public class SartScene : MonoBehaviour {
 
 	// Use this for initialization
 	public void StarButton () {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(2);
 	}
 	
 	// Update is called once per frame
